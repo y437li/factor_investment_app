@@ -14,14 +14,15 @@ def get_russell3000_tickers():
     tickers = pd.read_excel('grid1_tgshydpp.xlsx')['Ticker'].tolist()
     return tickers
 
-def download_stock_data(tickers, start_date='2000-01-01', end_date=None):
+def download_stock_data(tickers, start_date='1960-01-01', end_date=None):
     if end_date is None:
         end_date = datetime.datetime.today().strftime('%Y-%m-%d')
     data = []
     for ticker in tqdm(tickers):
         try:
             stock = yf.Ticker(ticker)
-            hist = stock.history(start=start_date, end=end_date)
+            hist = yf.download(ticker,start=start_date, end=end_date)
+            print(hist)
             if hist.empty:
                 continue
             hist.reset_index(inplace=True)

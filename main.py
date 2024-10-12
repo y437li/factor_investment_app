@@ -65,18 +65,18 @@ def main():
     logger.info("股票数据的日期列已转换为 datetime 格式。")
 
     # 获取10年期美债无风险利率数据
-    risk_free_rate = get_risk_free_rate_from_db(conn, args.start_date, args.end_date)
+    #risk_free_rate = get_risk_free_rate_from_db(conn, args.start_date, args.end_date)
 
 
     # 检查是否存在 'Return' 列，如果不存在则计算
     if 'Return' not in stock_df.columns:
-        if 'Close' in stock_df.columns:
+        if 'Adj Close' in stock_df.columns:
             stock_df.sort_values(by=['Ticker', 'Date'], inplace=True)
-            stock_df['Return'] = stock_df.groupby('Ticker')['Close'].pct_change()
+            stock_df['Return'] = stock_df.groupby('Ticker')['Adj Close'].pct_change()
             stock_df.dropna(subset=['Return'], inplace=True)
             logger.info("'Return' 列已成功计算。")
         else:
-            logger.error("股票数据中缺少 'Close' 列，无法计算 'Return'。")
+            logger.error("股票数据中缺少 'Adj Close' 列，无法计算 'Return'。")
             sys.exit(1)
 
     # 获取股票代码列表
@@ -223,7 +223,7 @@ def main():
     stock_df_filtered = stock_df_filtered[stock_df_filtered['Ticker'].isin(selected_tickers)]
 
     # 更新 latest_prices，以匹配筛选后的股票
-    latest_prices = stock_df_filtered.groupby('Ticker')['Close'].last()
+    latest_prices = stock_df_filtered.groupby('Ticker')['Adj Close'].last()
     latest_prices = latest_prices.loc[selected_tickers]
 
     # 计算协方差矩阵

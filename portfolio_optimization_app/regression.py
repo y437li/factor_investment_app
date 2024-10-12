@@ -76,10 +76,10 @@ def perform_regression(stock_df, factors):
         last_day = ticker_data.groupby('Month').last()
 
         # 计算月度收益率
-        monthly_return = (last_day['Close'] - first_day['Close']) / first_day['Close']
+        monthly_return = (last_day['Adj Close'] - first_day['Adj Close']) / first_day['Adj Close']
         monthly_return = monthly_return.reset_index().rename(columns={0: 'Return'})
         monthly_return['Date'] = first_day.reset_index()['Date']
-        monthly_return.rename(columns={'Close': 'Return'}, inplace=True)
+        monthly_return.rename(columns={'Adj Close': 'Return'}, inplace=True)
         monthly_return = monthly_return[['Date', 'Return']]
 
         # 使用 first_day 来提供月度的日期信息

@@ -104,7 +104,7 @@ def load_stock_data(db_name='russell3000.db'):
         try:
             # 按照 'Ticker' 分组并按日期排序，然后计算月度收益率
             stock_df = stock_df.sort_values(['Ticker', 'Date'])
-            stock_df['Return'] = stock_df.groupby('Ticker')['Close'].transform(lambda x: x.pct_change())
+            stock_df['Return'] = stock_df.groupby('Ticker')['Adj Close'].transform(lambda x: x.pct_change())
             # 删除第一行（由于pct_change导致的NaN值）
             initial_rows = len(stock_df)
             stock_df = stock_df.dropna(subset=['Return'])

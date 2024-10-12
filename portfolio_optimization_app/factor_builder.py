@@ -7,7 +7,7 @@ def construct_momentum(df, window=6):
     # 确保按照日期排序
     df = df.sort_values(by=['Ticker', 'Date'])
     # 计算动量分数，使用 transform 确保结果与原 DataFrame 对齐
-    df['Momentum'] = df.groupby('Ticker')['Close'].transform(lambda x: x.pct_change(periods=window))
+    df['Momentum'] = df.groupby('Ticker')['Adj Close'].transform(lambda x: x.pct_change(periods=window))
     # 删除缺失值
     df.dropna(subset=['Momentum'], inplace=True)
     return df
