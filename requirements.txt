@@ -1,0 +1,10 @@
+pandas
+numpy
+yfinance
+sqlite3
+sqlalchemy
+cvxpy
+gradio
+matplotlib
+scipy
+yahoofinancials

@@ -1,0 +1,13 @@
+factor_investment_project/
+├── portfolio_optimization_app/
+│   ├── __init__.py
+│   ├── data_loader.py
+│   ├── factor_builder.py
+│   ├── regression.py
+│   ├── optimization.py
+│   └── utils.py
+├── main.py
+├── requirements.txt
+├── F-F_Research_Data_Factors.CSV
+├── russell3000.db
+└── README.md
