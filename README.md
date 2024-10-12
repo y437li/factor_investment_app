@@ -31,7 +31,7 @@ cd factor_investment_project
 ```
 
 
-### ***2. 安装依赖 ###
+### **2. 安装依赖 ###
 使用以下命令安装所需的 Python 依赖：
 ```bash
 pip install -r requirements.txt
