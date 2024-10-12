@@ -53,7 +53,9 @@ pip install -r requirements.txt
 2. **股票数据**：SQLite 数据库（例如：`russell3000.db`），包含以下表：
 
    - **`stock_data`**：记录股票的收益和价格数据。
-     - 列：`Ticker`, `Date`, `Return`, `Close`
+     - 列：`Ticker`, `Date`, `Close`，`Adj Close`
+   
+   - **`stock_info`**：记录股票的行业
 
 ## **4. 运行参数**
 
